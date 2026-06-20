@@ -5,7 +5,7 @@ function Navbar() {
   const logoUrl = "https://unpkg.com/simple-icons@v13/icons/linear.svg";
 
   return (
-    <header className="w-full bg-zinc-950 text-zinc-200">
+    <header className="fixed top-0 left-0 w-full z-50 bg-zinc-950 text-zinc-200 px-16">
       <nav className="mx-auto h-16 grid grid-cols-3 items-center">
         
         {/* Left: White Logo (Using CSS invert to force pure white) */}

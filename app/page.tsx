@@ -9,15 +9,17 @@ import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div className="bg-black px-16">
+    <div className="bg-black">
       <Navbar />
       <HeroSection />
-      <TestimonialsSection />
-      <WhyWorkWithMe />
-      <HowWeWorkSection />
-      <PortfolioSection />
-      <WaysToEngage />
-      <Footer />
+      <div className="px-16">
+        <TestimonialsSection />
+        <WhyWorkWithMe />
+        <HowWeWorkSection />
+        <PortfolioSection />
+        <WaysToEngage />
+        <Footer />
+      </div>
     </div>
   );
 }
