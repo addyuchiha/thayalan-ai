@@ -5,7 +5,28 @@ function Navbar() {
   const logoUrl = "https://unpkg.com/simple-icons@v13/icons/linear.svg";
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-zinc-950 text-zinc-200 px-16">
+    <header className="fixed top-0 left-0 w-full z-50 bg-zinc-950 text-zinc-200 px-16 anim-navbar">
+      {/* Pure CSS Animation Styles */}
+      <style>{`
+        @keyframes navFadeInDown {
+          0% {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Matches the timing of the hero content (.anim-content) */
+        .anim-navbar {
+          opacity: 0;
+          animation: navFadeInDown 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: 1.8s;
+        }
+      `}</style>
+
       <nav className="mx-auto h-16 grid grid-cols-3 items-center">
         
         {/* Left: White Logo (Using CSS invert to force pure white) */}

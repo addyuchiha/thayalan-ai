@@ -6,35 +6,103 @@ import ParticleEffect from "./ParticleEffect"; // Import the particle component
 
 function HeroSection() {
   return (
-    // Outer Container: Set to full screen height (h-screen)
-    <div className="relative w-full h-screen overflow-hidden bg-zinc-950">
-      {/* Hero Graphic Container - Now Absolute to cover the entire screen */}
+    // Outer Container: Changed to bg-black to ensure a pure black initial state
+    <div className="relative w-full h-screen overflow-hidden bg-black">
+      {/* Pure CSS Animation Styles */}
+      <style>{`
+        /* Simple fade-in and blur-in with no positional/transform shifts */
+        @keyframes heroFadeBlurIn {
+          0% {
+            opacity: 0;
+            filter: blur(40px);
+          }
+          100% {
+            opacity: 1;
+            filter: blur(0px);
+          }
+        }
+
+        @keyframes heroFadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes heroFadeIn {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+
+        /* 1. Background starts blurring in after 0.5s of pure black */
+        .anim-bg {
+          opacity: 0;
+          animation: heroFadeBlurIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: 0.5s;
+        }
+
+        /* 2. Cyborg portrait fades/blurs in at the exact same time as background */
+        /* Only opacity and blur are animated, preserving the absolute Tailwind position */
+        .anim-cyborg {
+          opacity: 0;
+          animation: heroFadeBlurIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: 0.5s;
+        }
+
+        /* 3. Particles fade in smoothly once the environment is visible */
+        .anim-particles {
+          opacity: 0;
+          animation: heroFadeIn 2s ease forwards;
+          animation-delay: 1.2s;
+        }
+
+        /* 4. Hero Content slides up and fades in after the visuals are established */
+        .anim-content {
+          opacity: 0;
+          animation: heroFadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: 1.8s;
+        }
+      `}</style>
+
+      {/* Hero Graphic Container */}
       <div className="absolute inset-0 z-0 rounded-[3rem] overflow-hidden">
+        {/* Background Image */}
         <Image
           src="/images/HeroBackground.png"
           alt="Background"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center anim-bg"
           priority
         />
 
-        {/* Particle Overlay (placed on top of BG, behind Cyborg) */}
-        <ParticleEffect />
+        {/* Particle Overlay (wrapped to apply animation class safely) */}
+        <div className="absolute inset-0 anim-particles">
+          <ParticleEffect />
+        </div>
 
         {/* The Cyborg Portrait */}
         <Image
           src={HeroImage}
           alt="Cyborg"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-auto h-[80%] object-contain"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-auto h-[80%] object-contain anim-cyborg"
         />
 
-        {/* The Glassmorphism Ecosystem Cards */}
-        {/* <ToolsOverlay /> */}
+        {/* Optional: The Glassmorphism Ecosystem Cards */}
+        {/* <div className="anim-content">
+          <ToolsOverlay />
+        </div> */}
       </div>
 
       {/* Hero Content Section - Overlay pinned to the bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-30 p-6 md:p-12 lg:p-16 pointer-events-none">
-        {/* Changed items-start to items-end to push everything to the very bottom */}
+      <div className="absolute bottom-0 left-0 w-full z-30 p-6 md:p-12 lg:p-16 pointer-events-none anim-content">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full">
           {/* Left: Heading (Bottom Left) */}
           <div className="md:pr-8 pointer-events-auto">

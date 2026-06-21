@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
 
 interface ProcessStep {
   number: string;
@@ -60,12 +62,38 @@ const steps: ProcessStep[] = [
 ];
 
 export default function HowWeWorkSection() {
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1, // Trigger once 10% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="bg-black text-white py-32 relative">
-      {/* Self-contained CSS for the custom particle animation */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
+    <section 
+      ref={sectionRef}
+      className={`bg-black text-white py-32 relative ${isInView ? "animate-in" : ""}`}
+    >
+      {/* Self-contained CSS for layout transitions and particles */}
+      <style>{`
         @keyframes float-particle {
           0% {
             transform: translateY(15px) scale(0.6);
@@ -83,13 +111,52 @@ export default function HowWeWorkSection() {
           animation: float-particle var(--duration, 5s) ease-in-out infinite;
           animation-delay: var(--delay, 0s);
         }
-      `,
-        }}
-      />
+
+        /* --- ENTRY ANIMATIONS --- */
+
+        /* Header Slide & Fade In */
+        .anim-process-header {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          transition-delay: 0.1s;
+        }
+        .animate-in .anim-process-header {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Card Blur & Fade In */
+        .anim-process-card {
+          opacity: 0;
+          filter: blur(25px);
+          transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Staggered delay for each card (left to right) */
+        .anim-process-card:nth-child(1) {
+          transition-delay: 0.5s;
+        }
+        .anim-process-card:nth-child(2) {
+          transition-delay: 0.8s;
+        }
+        .anim-process-card:nth-child(3) {
+          transition-delay: 1.1s;
+        }
+        .anim-process-card:nth-child(4) {
+          transition-delay: 1.4s;
+        }
+
+        /* Active triggered states */
+        .animate-in .anim-process-card {
+          opacity: 1;
+          filter: blur(0px);
+        }
+      `}</style>
 
       <div className="max-w-[100rem] mx-auto px-4 md:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mx-auto mb-20 flex flex-col items-center">
+        <div className="text-center mx-auto mb-20 flex flex-col items-center anim-process-header">
           <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
             A structured, collaborative process
           </h2>
@@ -103,7 +170,7 @@ export default function HowWeWorkSection() {
         {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step, index) => (
-            <div className="relative" key={index}>
+            <div className="relative anim-process-card" key={index}>
               <div
                 className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0"
                 aria-hidden="true"

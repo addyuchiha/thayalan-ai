@@ -1,5 +1,7 @@
-import { ArrowUpRight, Layers } from "lucide-react";
-import { LuSparkles } from "react-icons/lu";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { RiHandHeartFill } from "react-icons/ri";
 
 interface EngagementModel {
@@ -107,9 +109,37 @@ const particles = [
 ];
 
 export default function WaysToEngage() {
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1, // Trigger once 10% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="bg-black text-white py-12 mb-8">
-      {/* Self-contained styling for continuous particle animations */}
+    <section 
+      ref={sectionRef}
+      className={`bg-black text-white py-12 mb-8 relative ${isInView ? "animate-in" : ""}`}
+    >
+      {/* Self-contained styling for continuous particle and layout animations */}
       <style>{`
         @keyframes floatUp {
           0% {
@@ -134,11 +164,49 @@ export default function WaysToEngage() {
           animation: floatUp var(--duration, 3s) ease-in-out infinite;
           animation-delay: var(--delay, 0s);
         }
+
+        /* --- ENTRY ANIMATIONS --- */
+
+        /* Header Slide & Fade In */
+        .anim-engage-header {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          transition-delay: 0.1s;
+        }
+        .animate-in .anim-engage-header {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Card Blur & Fade In */
+        .anim-engage-card {
+          opacity: 0;
+          filter: blur(25px);
+          transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Staggered delays for the cards */
+        .anim-engage-card:nth-child(1) {
+          transition-delay: 0.5s;
+        }
+        .anim-engage-card:nth-child(2) {
+          transition-delay: 0.8s;
+        }
+        .anim-engage-card:nth-child(3) {
+          transition-delay: 1.1s;
+        }
+
+        /* Trigger active state once parent container is in viewport */
+        .animate-in .anim-engage-card {
+          opacity: 1;
+          filter: blur(0px);
+        }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header and Subheading */}
-        <div className="text-center mx-auto mb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center">
+        <div className="text-center mx-auto mb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center anim-engage-header">
           <div className="group inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-black border border-neutral-200 shadow-sm hover:bg-neutral-50 text-xs font-bold tracking-wider uppercase mb-6 transition-all duration-300 hover:scale-105 cursor-pointer select-none">
             <RiHandHeartFill className="w-3.5 h-3.5 text-black group-hover:rotate-12 transition-transform duration-300" />
             <span>Ways to Partner</span>
@@ -157,7 +225,7 @@ export default function WaysToEngage() {
         {/* Simplified Engagement Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {models.map((model, index) => (
-            <div key={index} className="relative group flex flex-col isolate">
+            <div key={index} className="relative group flex flex-col isolate anim-engage-card">
               {/* Particle emitter container (layered behind the visual card via z-[5]) */}
               <div className="absolute top-0 left-6 right-6 h-0 pointer-events-none z-[5] overflow-visible">
                 {particles.map((p, pIdx) => (
@@ -185,7 +253,6 @@ export default function WaysToEngage() {
               {/* Card visual wrapper (layered on top via z-10) */}
               <div
                 className="relative z-10 flex-1 rounded-[2.25rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden bg-cover bg-center border border-zinc-800 transition-all duration-300 min-h-[520px] bg-zinc-900"
-                // style={{ backgroundImage: `url(${model.bgImage})` }}
               >
                 <div>
                   {/* Title */}
@@ -200,7 +267,7 @@ export default function WaysToEngage() {
 
                   {/* Included Checklist */}
                   <div className="mb-8">
-                    <p className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-400 mb-4">
+                    <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-4">
                       What's Included:
                     </p>
                     <ul className="space-y-3">
