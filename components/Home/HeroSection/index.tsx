@@ -1,7 +1,8 @@
 import Image from "next/image";
 import HeroImage from "@/public/images/cyborg4.png"; // Adjust path as necessary
 import { ArrowUpRight } from "lucide-react";
-import ToolsOverlay from "./ToolsOverlay";
+import ToolsOverlay from "../ToolsOverlay";
+import ParticleEffect from "./ParticleEffect"; // Import the particle component
 
 function HeroSection() {
   return (
@@ -16,16 +17,23 @@ function HeroSection() {
           className="object-cover object-center"
           priority
         />
+
+        {/* Particle Overlay (placed on top of BG, behind Cyborg) */}
+        <ParticleEffect />
+
+        {/* The Cyborg Portrait */}
         <Image
           src={HeroImage}
           alt="Cyborg"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-auto h-[80%] "
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-auto h-[80%] object-contain"
         />
+
+        {/* The Glassmorphism Ecosystem Cards */}
         {/* <ToolsOverlay /> */}
       </div>
 
       {/* Hero Content Section - Overlay pinned to the bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-20 p-6 md:p-12 lg:p-16 pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-full z-30 p-6 md:p-12 lg:p-16 pointer-events-none">
         {/* Changed items-start to items-end to push everything to the very bottom */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full">
           {/* Left: Heading (Bottom Left) */}

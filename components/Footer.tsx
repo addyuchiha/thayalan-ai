@@ -5,7 +5,7 @@ function Footer() {
   const logoUrl = "https://unpkg.com/simple-icons@v13/icons/linear.svg";
 
   return (
-    <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 my-8 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
+    <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 mb-16 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
       
       {/* Ambient Background Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[2.5rem]">

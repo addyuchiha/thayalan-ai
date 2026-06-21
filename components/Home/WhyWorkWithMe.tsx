@@ -26,7 +26,14 @@ const pillars: ValuePillar[] = [
 
 export default function WhyWorkWithMe() {
   return (
-      <section className="max-w-[100rem] mx-auto bg-zinc-900 border border-zinc-900 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-2xl text-white">
+    <div className="relative max-w-[100rem] mx-auto">
+      {/* Blue glow element positioned at the top behind the card */}
+      <div 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-[100px] rounded-full pointer-events-none z-0" 
+        aria-hidden="true"
+      />
+
+      <section className="relative z-10 bg-zinc-900 border border-zinc-900 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-2xl text-white">
         
         {/* Header and Subheading Inside the Card */}
         <div className="text-center mx-auto mb-16 flex flex-col items-center">
@@ -78,5 +85,6 @@ export default function WhyWorkWithMe() {
         </div>
 
       </section>
+    </div>
   );
 }

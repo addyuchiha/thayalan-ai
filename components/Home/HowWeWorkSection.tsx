@@ -18,8 +18,8 @@ const steps: ProcessStep[] = [
       "Selecting database schema models",
       "Creating a clear modular project roadmap"
     ],
-    // High-quality abstract wireframing/planning placeholder
-    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80" 
+    // Clean, neutral abstract geometric design
+    image: "https://images.unsplash.com/photo-1502239608882-93b729c6af43?auto=format&fit=crop&w=800&q=80" 
   },
   {
     number: "02",
@@ -30,8 +30,8 @@ const steps: ProcessStep[] = [
       "Building accessible primitive UI cards",
       "Preparing structured mock layouts"
     ],
-    // High-quality UI/design placeholder
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80"
+    // Neutral abstract structural grid lines
+    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80"
   },
   {
     number: "03",
@@ -42,8 +42,8 @@ const steps: ProcessStep[] = [
       "Vercel live preview links",
       "Incremental, non-blocking code changes"
     ],
-    // High-quality coding/tech placeholder
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+    // Clean, minimalist dark waves
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
   },
   {
     number: "04",
@@ -54,22 +54,22 @@ const steps: ProcessStep[] = [
       "Full clean-up of codebase types",
       "Comprehensive onboarding walk-through"
     ],
-    // High-quality performance/metrics placeholder
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+    // Elegant neutral abstract curves
+    image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
 export default function HowWeWorkSection() {
   return (
-    <section className="bg-black text-white py-32 border-t border-zinc-900">
-      <div className="max-w-[100rem] mx-auto ">
+    <section className="bg-black text-white py-32 relative">
+      <div className="max-w-[100rem] mx-auto px-4 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mx-auto mb-16 flex flex-col items-center">
-          <h2 className="text-4xl md:text-6xl tracking-tight mb-6 text-white">
+        <div className="text-center mx-auto mb-20 flex flex-col items-center">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
             A structured, collaborative process
           </h2>
-          <p className="text-zinc-400 text-lg leading-relaxed max-w-3xl">
+          <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl font-light">
             No guesswork, no sudden surprises. We build modern web apps using a transparent, production-proven workflow that keeps you closely updated at every stage.
           </p>
         </div>
@@ -79,49 +79,47 @@ export default function HowWeWorkSection() {
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="group relative h-full bg-zinc-900/90 backdrop-blur-md border border-zinc-800/90 rounded-[2rem] p-4 sm:p-6 hover:border-cyan-500/30 hover:shadow-[0_0_30px_-10px_rgba(6,182,212,0.15)] transition-all duration-300 flex flex-col"
+              className="group relative h-full bg-zinc-950/40 border border-zinc-900 rounded-[2rem] p-5 hover:border-zinc-800 transition-all duration-300 flex flex-col overflow-hidden"
             >
-              {/* Subtle Cyan Top Glow (Matches Testimonials) */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/0 to-transparent group-hover:via-cyan-500/40 transition-all duration-500 rounded-t-[2rem]" />
               
               {/* Card Image Area */}
-              <div className="relative w-full h-40 mb-6 rounded-2xl overflow-hidden bg-zinc-800 isolate">
+              <div className="relative w-full h-44 mb-6 rounded-2xl overflow-hidden bg-zinc-950/80 border border-zinc-900/60 isolate">
                 <img 
                   src={step.image} 
                   alt={step.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale contrast-125"
                 />
-                {/* Dark overlay to ensure text contrast if needed, optional */}
-                <div className="absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:bg-transparent" />
                 
-                {/* Solid White Step Badge */}
+                {/* Subtle dark vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent opacity-80" />
+                
+                {/* Floating Clean Step Badge */}
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="text-xs font-semibold tracking-wide text-black bg-white px-3 py-1.5 rounded-full shadow-sm">
-                    Step {step.number}
-                  </span>
+                  <div className="flex items-center bg-zinc-950/80 backdrop-blur-md border border-white/5 px-3.5 py-1.5 rounded-full shadow-lg">
+                    <span className="text-[11px] font-medium tracking-wide text-zinc-300">
+                      Step {step.number}
+                    </span>
+                  </div>
                 </div>
               </div>
 
               {/* Content Area */}
-              <div className="flex-1 flex flex-col">
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+              <div className="flex-1 flex flex-col relative z-10 px-1">
+                <h3 className="text-xl font-medium text-white mb-2.5">
                   {step.title}
                 </h3>
-                <p className="text-zinc-400 text-[15px] leading-relaxed mb-6 flex-1">
+                <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-1 font-light">
                   {step.description}
                 </p>
 
-                {/* Bulleted Deliverables */}
-                <div className="pt-5 border-t border-zinc-800/80">
-                  <ul className="space-y-2.5">
+                {/* Minimalist Deliverables List */}
+                <div className="pt-5 border-t border-zinc-900">
+                  <ul className="space-y-3">
                     {step.details.map((detail, dIdx) => (
-                      <li key={dIdx} className="flex items-start gap-3 text-xs text-zinc-400">
-                        <span className="text-cyan-400 mt-0.5 shrink-0">
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                          </svg>
-                        </span>
-                        <span>{detail}</span>
+                      <li key={dIdx} className="flex items-start gap-3 text-xs text-zinc-400 hover:text-zinc-300 transition-colors duration-200">
+                        {/* Soft, minimal neutral horizontal line indicator */}
+                        <span className="w-1.5 h-[1px] bg-zinc-600 mt-2 shrink-0" />
+                        <span className="font-light">{detail}</span>
                       </li>
                     ))}
                   </ul>
