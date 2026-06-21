@@ -29,7 +29,7 @@ export default function WhyWorkWithMe() {
     <div className="relative max-w-[100rem] mx-auto">
       {/* Blue glow element positioned at the top behind the card */}
       <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-[100px] rounded-full pointer-events-none z-0" 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0" 
         aria-hidden="true"
       />
 
