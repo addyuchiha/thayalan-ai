@@ -104,7 +104,7 @@ export default function TestimonialsSection() {
       <div className="absolute top-24 hidden md:block pointer-events-none select-none z-0 -left-[240px] lg:-left-[200px] xl:-left-[90px] transition-all duration-700">
         {/* Edge 3 (Deepest Background - Strengthened) */}
         <div
-          className="absolute left-[120px] top-[50px] w-[320px] h-[400px] rounded-[3rem] bg-gradient-to-r from-transparent via-zinc-950 to-blue-950/50 border-r border-t border-blue-600/30 shadow-[inset_-10px_0_40px_-10px_rgba(30,64,175,0.25)]"
+          className="absolute left-[120px] top-[100px] w-[320px] h-[400px] rounded-[3rem] bg-gradient-to-r from-transparent via-zinc-950 to-blue-950/50 border-r border-t border-blue-600/30 shadow-[inset_-10px_0_40px_-10px_rgba(30,64,175,0.25)]"
           style={{
             maskImage: "linear-gradient(to bottom, black 30%, transparent 95%)",
             WebkitMaskImage:
@@ -114,7 +114,7 @@ export default function TestimonialsSection() {
 
         {/* Edge 2 (Midground - Strengthened) */}
         <div
-          className="absolute left-[60px] top-[25px] w-[320px] h-[440px] rounded-[3rem] bg-gradient-to-r from-transparent via-zinc-950 to-blue-900/60 border-r border-t border-blue-500/50 shadow-[inset_-12px_0_40px_-8px_rgba(37,99,235,0.35),_25px_0_50px_rgba(0,0,0,0.9)]"
+          className="absolute left-[60px] top-[50px] w-[320px] h-[440px] rounded-[3rem] bg-gradient-to-r from-transparent via-zinc-950 to-blue-900/60 border-r border-t border-blue-500/50 shadow-[inset_-12px_0_40px_-8px_rgba(37,99,235,0.35),_25px_0_50px_rgba(0,0,0,0.9)]"
           style={{
             maskImage: "linear-gradient(to bottom, black 40%, transparent 95%)",
             WebkitMaskImage:
@@ -137,7 +137,7 @@ export default function TestimonialsSection() {
       <div className="absolute top-24 hidden md:block pointer-events-none select-none z-0 -right-[240px] lg:-right-[200px] xl:-right-[90px] transition-all duration-700">
         {/* Edge 3 (Deepest Background - Strengthened) */}
         <div
-          className="absolute right-[120px] top-[50px] w-[320px] h-[400px] rounded-[3rem] bg-gradient-to-l from-transparent via-zinc-950 to-blue-950/50 border-l border-t border-blue-600/30 shadow-[inset_10px_0_40px_-10px_rgba(30,64,175,0.25)]"
+          className="absolute right-[120px] top-[100px] w-[320px] h-[400px] rounded-[3rem] bg-gradient-to-l from-transparent via-zinc-950 to-blue-950/50 border-l border-t border-blue-600/30 shadow-[inset_10px_0_40px_-10px_rgba(30,64,175,0.25)]"
           style={{
             maskImage: "linear-gradient(to bottom, black 30%, transparent 95%)",
             WebkitMaskImage:
@@ -147,7 +147,7 @@ export default function TestimonialsSection() {
 
         {/* Edge 2 (Midground - Strengthened) */}
         <div
-          className="absolute right-[60px] top-[25px] w-[320px] h-[440px] rounded-[3rem] bg-gradient-to-l from-transparent via-zinc-950 to-blue-900/60 border-l border-t border-blue-500/50 shadow-[inset_10px_0_40px_-8px_rgba(37,99,235,0.35),_-25px_0_50px_rgba(0,0,0,0.9)]"
+          className="absolute right-[60px] top-[50px] w-[320px] h-[440px] rounded-[3rem] bg-gradient-to-l from-transparent via-zinc-950 to-blue-900/60 border-l border-t border-blue-500/50 shadow-[inset_10px_0_40px_-8px_rgba(37,99,235,0.35),_-25px_0_50px_rgba(0,0,0,0.9)]"
           style={{
             maskImage: "linear-gradient(to bottom, black 40%, transparent 95%)",
             WebkitMaskImage:

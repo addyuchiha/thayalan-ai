@@ -50,9 +50,16 @@ export default function WhyWorkWithMe() {
           {pillars.map((pillar, index) => (
             <div 
               key={index} 
-              className="group relative bg-black border border-zinc-800/60 rounded-[2rem] p-6 hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between"
+              className="group relative bg-black border border-black rounded-[2rem] p-6 hover:border-zinc-800 transition-all duration-300 flex flex-col justify-between overflow-hidden"
             >
-              <div className="flex flex-col h-full justify-between">
+              {/* Ambient Blue Glow at bottom left */}
+              <div 
+                className="absolute -bottom-12 -left-12 w-48 h-48 bg-blue-500 rounded-full blur-3xl pointer-events-none z-0" 
+                aria-hidden="true"
+              />
+
+              {/* Card Content wrapper ensuring text stays above glow */}
+              <div className="flex flex-col h-full justify-between relative z-10">
                 <div>
                   {/* Image Container with No Visual Styling/Filters */}
                   <div className="w-full aspect-[4/3] flex items-center justify-center overflow-hidden mb-6 relative rounded-[1.5rem]">
@@ -74,7 +81,7 @@ export default function WhyWorkWithMe() {
                   <h3 className="text-xl md:text-2xl font-medium text-white tracking-tight mb-3 group-hover:text-zinc-100 transition-colors duration-300">
                     {pillar.title}
                   </h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed">
+                  <p className="text-zinc-200 text-sm leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>

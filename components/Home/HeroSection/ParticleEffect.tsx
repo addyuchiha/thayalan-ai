@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 
 export default function ParticleEffect() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -11,8 +11,8 @@ export default function ParticleEffect() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId;
-    let particles = [];
+    let animationFrameId: number;
+    const particles: Particle[] = [];
     // Adjust this number to control density of the particles
     const numParticles = 50; 
 
@@ -34,14 +34,23 @@ export default function ParticleEffect() {
     window.addEventListener("resize", resizeCanvas);
 
     class Particle {
+      x!: number;
+      y!: number;
+      size!: number;
+      speedY!: number;
+      speedX!: number;
+      baseAlpha!: number;
+      fadeThreshold!: number;
+      alpha!: number;
+
       constructor() {
         this.reset(true);
       }
 
-      reset(initial = false) {
+      reset(initial: boolean = false): void {
         // Get parent dimension to map particles correctly
-        const parentWidth = canvas.parentElement?.clientWidth || window.innerWidth;
-        const parentHeight = canvas.parentElement?.clientHeight || window.innerHeight;
+        const parentWidth = canvas!.parentElement?.clientWidth || window.innerWidth;
+        const parentHeight = canvas!.parentElement?.clientHeight || window.innerHeight;
 
         this.x = Math.random() * parentWidth;
         // Distribute randomly across height on initial load; otherwise start at the bottom
@@ -52,9 +61,10 @@ export default function ParticleEffect() {
         this.speedX = (Math.random() - 0.5) * 0.4; // Soft horizontal drift
         this.baseAlpha = Math.random() * 0.6 + 0.4; // Base opacity
         this.fadeThreshold = parentHeight * (Math.random() * 0.4 + 0.1); // Dynamic height to start fading
+        this.alpha = 0; // Initialize alpha to avoid potential undefined issues before update()
       }
 
-      update(parentHeight) {
+      update(parentHeight: number): void {
         this.y -= this.speedY;
         this.x += this.speedX;
 
@@ -63,26 +73,31 @@ export default function ParticleEffect() {
         this.alpha = this.baseAlpha * heightProgress;
 
         // Reset particle if it drifts off-screen or goes past the fade threshold
-        if (this.y < this.fadeThreshold || this.alpha <= 0.02 || this.x < 0 || this.x > (canvas.parentElement?.clientWidth || window.innerWidth)) {
+        if (
+          this.y < this.fadeThreshold || 
+          this.alpha <= 0.02 || 
+          this.x < 0 || 
+          this.x > (canvas!.parentElement?.clientWidth || window.innerWidth)
+        ) {
           this.reset(false);
         }
       }
 
-      draw(parentHeight) {
+      draw(): void {
         if (this.alpha <= 0) return;
 
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx!.beginPath();
+        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 
         // Soft, shining bluish-white radial light glow
-        ctx.shadowBlur = this.size * 3;
-        ctx.shadowColor = "rgba(120, 190, 255, 0.8)";
+        ctx!.shadowBlur = this.size * 3;
+        ctx!.shadowColor = "rgba(120, 190, 255, 0.8)";
         
-        ctx.fillStyle = `rgba(230, 245, 255, ${this.alpha})`;
-        ctx.fill();
+        ctx!.fillStyle = `rgba(230, 245, 255, ${this.alpha})`;
+        ctx!.fill();
 
         // Reset shadows to ensure drawing speed is optimized
-        ctx.shadowBlur = 0;
+        ctx!.shadowBlur = 0;
       }
     }
 
@@ -99,7 +114,7 @@ export default function ParticleEffect() {
 
       particles.forEach((particle) => {
         particle.update(parentHeight);
-        particle.draw(parentHeight);
+        particle.draw();
       });
 
       animationFrameId = requestAnimationFrame(animate);
