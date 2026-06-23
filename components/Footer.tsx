@@ -101,7 +101,7 @@ function Footer() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0" 
         aria-hidden="true"
       />
-      <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 mb-16 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
+      <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 mb-4 sm:mb-16 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
         {/* Ambient Background Glows */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[2.5rem]">
           <div className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[60%] bg-blue-900/20 blur-[120px] rounded-full mix-blend-screen" />

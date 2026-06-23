@@ -92,7 +92,7 @@ function HeroSection() {
         <Image
           src={HeroImage}
           alt="Cyborg"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-auto h-[80%] object-contain anim-cyborg"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-auto h-[60%] md:h-[80%] object-contain object-bottom anim-cyborg"
         />
 
         {/* Optional: The Glassmorphism Ecosystem Cards */}
@@ -101,19 +101,19 @@ function HeroSection() {
         </div> */}
       </div>
 
-      {/* Hero Content Section - Overlay pinned to the bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-30 p-6 md:p-12 lg:p-16 pointer-events-none anim-content">
+      {/* Hero Content Section - Centered on mobile, absolute bottom on desktop */}
+      <div className="absolute inset-0 md:inset-auto md:bottom-0 md:left-0 md:w-full md:h-auto z-30 p-6 md:p-12 lg:p-16 flex flex-col justify-center md:block pointer-events-none anim-content">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full">
-          {/* Left: Heading (Bottom Left) */}
-          <div className="md:pr-8 pointer-events-auto">
-            <h1 className="text-6xl md:text-5xl lg:text-8xl text-white tracking-tight leading-tight">
+          {/* Left: Heading (Centered on mobile, left-aligned on desktop) */}
+          <div className="md:pr-8 pointer-events-auto text-center md:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-8xl text-white tracking-tight leading-tight">
               Empowering your digital future.
             </h1>
           </div>
 
-          {/* Right: Subheading & CTA (Bottom Right) */}
-          <div className="flex flex-col items-end gap-6 justify-end pointer-events-auto">
-            <p className="text-xl text-zinc-300 leading-relaxed max-w-xl text-end drop-shadow-md">
+          {/* Right: Subheading & CTA (Centered on mobile, right-aligned on desktop) */}
+          <div className="flex flex-col items-center md:items-end gap-6 justify-center md:justify-end pointer-events-auto">
+            <p className="text-lg md:text-xl text-zinc-300 leading-relaxed max-w-xl text-center md:text-end drop-shadow-md">
               We build responsive, fast, and modern web applications designed to
               bring your ideas to life. Elevate your presence with our custom
               solutions.

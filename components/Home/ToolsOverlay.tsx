@@ -139,13 +139,90 @@ export default function Unified3DEcosystem() {
 
         /* Pauses all animations on hover */
         .orbit-group:hover,
-        .orbit-group:hover * {
+        .orbit-group:hover *,
+        .animate-marquee:hover,
+        .animate-marquee-reverse:hover {
           animation-play-state: paused !important;
+        }
+
+        /* Marquee horizontal animation for mobile */
+        @keyframes marquee {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        .animate-marquee {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite;
+        }
+
+        .animate-marquee-reverse {
+          display: flex;
+          width: max-content;
+          animation: marquee 30s linear infinite reverse;
         }
       `}</style>
 
-      {/* Main concentric visual field with 3D perspective applied */}
-      <div className="relative w-[500px] h-[700px] flex items-center justify-center [perspective:1500px] -mt-24 mb-16">
+      {/* ================= MOBILE VIEW (Carousels + Central Card) ================= */}
+      <div className="md:hidden flex flex-col gap-8 w-full items-center justify-center relative mb-12 overflow-hidden">
+        {/* Row 1: Supporting Tools (Inner Items) */}
+        <div className="relative w-full overflow-hidden py-2">
+          {/* Black fade masks at each end */}
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
+
+          <div className="animate-marquee flex flex-row flex-nowrap gap-4">
+            {/* Duplicated array elements to ensure seamless scrolling loops */}
+            {[...innerItems, ...innerItems].map((item, idx) => (
+              <div key={`${item.name}-mobile-inner-${idx}`} className="flex-shrink-0 px-1">
+                <OrbitCard item={item} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* HeyMilo Central Card (Once, in the middle of 2 rows) */}
+        <div className="relative py-2 z-10">
+          <div className="relative flex items-center justify-center min-w-[150px]">
+            {/* Blurred background glow layer */}
+            <div className="absolute w-full h-full mt-4 ml-4 blur bg-blue-700 rounded-xl opacity-80 pointer-events-none" />
+
+            {/* Solid foreground card content */}
+            <div className="relative z-10 bg-neutral-900 rounded-xl px-6 py-4 w-full h-full flex items-center justify-center">
+              <object
+                data="/images/tools/heymilo.svg"
+                type="image/svg+xml"
+                className="h-8 w-auto object-contain brightness-0 invert flex items-center justify-center"
+                aria-label="HeyMilo"
+              >
+                <span className="text-neutral-200 text-sm font-semibold tracking-wide uppercase">
+                  HeyMilo
+                </span>
+              </object>
+            </div>
+          </div>
+        </div>
+
+        {/* Row 2: Secondary Ventures (Outer Items) */}
+        <div className="relative w-full overflow-hidden py-2">
+          {/* Black fade masks at each end */}
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
+
+          <div className="animate-marquee-reverse flex flex-row flex-nowrap gap-4">
+            {/* Duplicated array elements to ensure seamless scrolling loops */}
+            {[...outerItems, ...outerItems, ...outerItems, ...outerItems].map((item, idx) => (
+              <div key={`${item.name}-mobile-outer-${idx}`} className="flex-shrink-0 px-1">
+                <OrbitCard item={item} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ================= DESKTOP VIEW (3D Concentric Orbit System) ================= */}
+      <div className="hidden md:flex relative w-[500px] h-[700px] items-center justify-center [perspective:1500px] -mt-24 mb-16">
         {/* ================= UNIFIED 3D TILTED CONTAINER ================= */}
         <div
           className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d]"

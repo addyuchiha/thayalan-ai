@@ -13,7 +13,7 @@ export default function Home() {
     <div className="bg-black">
       <Navbar />
       <HeroSection />
-      <div className="px-16">
+      <div className="px-0 sm:px-10 md:px-16">
         <TestimonialsSection />
         <WhyWorkWithMe />
         <HowWeWorkSection />
