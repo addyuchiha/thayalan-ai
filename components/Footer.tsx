@@ -102,11 +102,7 @@ function Footer() {
         aria-hidden="true"
       />
       <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 mb-4 sm:mb-16 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
-        {/* Ambient Background Glows */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[2.5rem]">
-          <div className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[60%] bg-blue-900/20 blur-[120px] rounded-full mix-blend-screen" />
-          <div className="absolute -bottom-[10%] right-[10%] w-[40%] h-[50%] bg-sky-900/20 blur-[120px] rounded-full mix-blend-screen" />
-        </div>
+ 
 
         <div className="relative z-10">
           {/* Top Section - Always Visible & Bound to Scroll Reveal */}
