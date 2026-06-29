@@ -78,7 +78,7 @@ export default function Unified3DEcosystem() {
       sizeClass: "h-5 w-auto",
     },
     {
-      name: "King Tours",
+      name: "King Charters",
       imgUrl: "/images/tools/kingtours.png",
       sizeClass: "h-5 w-auto",
     },
@@ -99,12 +99,10 @@ export default function Unified3DEcosystem() {
       {/* Header and Subheading - Styled to match 'WhyWorkWithMe' */}
       <div className="text-center mx-auto mb-12 md:mb-16 flex flex-col items-center">
         <h2 className="text-4xl md:text-6xl tracking-tight mb-6 text-white font-normal">
-          A Connected Ecosystem
+          A Unified Growth Stack
         </h2>
         <p className="text-neutral-400 text-lg leading-relaxed max-w-3xl">
-          Integrating with the industry-standard software you rely on daily,
-          while powering specialized ventures that expand technical and
-          commercial reach under a single, unified framework.
+          Connecting the industry-standard tools your business relies on daily, while running active ventures that expand technical and commercial reach under a single, unified framework.
         </p>
       </div>
 
