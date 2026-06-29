@@ -13,49 +13,49 @@ interface ProcessStep {
 const steps: ProcessStep[] = [
   {
     number: "01",
-    title: "Alignment & Architecture",
+    title: "System Discovery",
     description:
-      "We align on your product requirements, user flows, and business goals before translating them into a clear technical architecture map.",
+      "We dive deep into your existing tech stack, identify operational bottlenecks, and map out the highest-leverage opportunities.",
     details: [
-      "Defining API boundaries",
-      "Selecting database schema models",
-      "Creating a clear modular project roadmap",
+      "Identify structural bottlenecks",
+      "Map existing technology stack",
+      "30 to 60 minute strategy session",
     ],
     image: "/images/abstract/step1.png",
   },
   {
     number: "02",
-    title: "Design System & UI Foundations",
+    title: "Growth Strategy",
     description:
-      "We set up a robust, scalable Tailwind CSS design system with reusable UI primitive components to ensure visual consistency.",
+      "We outline a custom execution roadmap, matching your growth objectives with practical automation and target workflow designs.",
     details: [
-      "Setting design token defaults",
-      "Building accessible primitive UI cards",
-      "Preparing structured mock layouts",
+      "Map custom workflow paths",
+      "Define automation logic layers",
+      "1 to 7 day delivery timeline",
     ],
     image: "/images/abstract/step2.png",
   },
   {
     number: "03",
-    title: "Continuous Git Iteration",
+    title: "Build & Deploy",
     description:
-      "Development takes place in transparent sprints. Pull requests are automatically deployed to staging environments for your review.",
+      "We launch your custom automations, configure active marketing campaigns, integrate HeyMilo, and deploy your live workflows.",
     details: [
-      "Feature-branch based workflows",
-      "Vercel live preview links",
-      "Incremental, non-blocking code changes",
+      "Launch custom API automations",
+      "Integrate HeyMilo AI features",
+      "Flexible, scope-based delivery",
     ],
     image: "/images/abstract/step3.png",
   },
   {
     number: "04",
-    title: "Optimization & Handover",
+    title: "Optimize & Scale",
     description:
-      "We run deep performance audits, set up analytics, and bundle strict TypeScript code for a clean, structured repository handover.",
+      "We closely monitor performance data, gather system feedback, and fine-tune your workflows for maximum efficiency and growth.",
     details: [
-      "Core Web Vitals scoring review",
-      "Full clean-up of codebase types",
-      "Comprehensive onboarding walk-through",
+      "Track system efficiency gains",
+      "Fine-tune active integrations",
+      "Optional ongoing support models",
     ],
     image: "/images/abstract/step4.png",
   },
@@ -161,9 +161,7 @@ export default function HowWeWorkSection() {
             A structured, collaborative process
           </h2>
           <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl font-light">
-            No guesswork, no sudden surprises. We build modern web apps using a
-            transparent, production-proven workflow that keeps you closely
-            updated at every stage.
+            No guesswork, no sudden surprises. We audit your systems and launch automated workflows using a transparent process built to deliver clear results at every stage.
           </p>
         </div>
 
