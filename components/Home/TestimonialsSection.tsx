@@ -88,7 +88,7 @@ export default function TestimonialsSection() {
       },
       {
         threshold: 0.1,
-      }
+      },
     );
 
     if (sectionRef.current) {
@@ -255,19 +255,19 @@ export default function TestimonialsSection() {
 
         <div className="relative z-10 text-center mx-auto flex flex-col items-center max-w-2xl px-4">
           <h2 className="text-4xl md:text-6xl tracking-tight mb-6 text-white font-medium">
-            Trusted by innovators worldwide
+            Trusted by businesses worldwide
           </h2>
           <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-            See how we help fast-growing startups and enterprises leverage
-            modern frameworks to deliver robust, lightning-fast digital
-            solutions.
+            See how we help operators, sales teams, and fast-growing
+            organizations eliminate operational friction and implement
+            high-yield AI systems.
           </p>
 
           <a
-            href="#get-started"
+            href="#ways-to-engage"
             className="group inline-flex items-center gap-4 pl-8 pr-2 py-2 bg-white text-zinc-950 font-medium rounded-full hover:bg-zinc-200 transition-colors duration-200"
           >
-            <span>Book a 15-Min Call</span>
+            <span>Explore Ways to Partner</span>
             <span className="flex items-center justify-center p-2 bg-zinc-950 text-white rounded-full transition-transform duration-300 group-hover:rotate-45">
               <ArrowUpRight className="w-6 h-6" strokeWidth={2.5} />
             </span>
@@ -277,7 +277,6 @@ export default function TestimonialsSection() {
 
       {/* --- INFINITE SCROLLING ROWS --- */}
       <div className="marquee-container flex flex-col gap-8 w-full relative z-10 anim-marquee-rows">
-        
         {/* Row 1 */}
         <div className="relative w-full overflow-hidden flex gap-6">
           {/* Track 1 */}
