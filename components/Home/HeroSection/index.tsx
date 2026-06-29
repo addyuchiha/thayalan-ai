@@ -107,22 +107,24 @@ function HeroSection() {
           {/* Left: Heading (Centered on mobile, left-aligned on desktop) */}
           <div className="md:pr-8 pointer-events-auto text-center md:text-left">
             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-8xl text-white tracking-tight leading-tight">
-              Empowering your digital future.
+              Accelerate growth with modern AI.
             </h1>
           </div>
 
           {/* Right: Subheading & CTA (Centered on mobile, right-aligned on desktop) */}
           <div className="flex flex-col items-center md:items-end gap-6 justify-center md:justify-end pointer-events-auto">
-            <p className="text-lg md:text-xl text-zinc-300 leading-relaxed max-w-xl text-center md:text-end drop-shadow-md">
-              We build responsive, fast, and modern web applications designed to
-              bring your ideas to life. Elevate your presence with our custom
-              solutions.
+            <p className="text-lg md:text-xl text-zinc-100 leading-relaxed max-w-xl text-center md:text-end drop-shadow-md">
+              Generating demand, streamlining operations, and deploying
+              practical AI workflows. I help businesses grow faster using modern
+              go-to-market strategies and automation.
             </p>
             <a
-              href="#get-started"
+              href="https://calendly.com/sthayalan/nicejob"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-4 pl-8 pr-2 py-2 bg-white text-zinc-950 font-medium rounded-full hover:bg-zinc-200 transition-colors duration-200 shadow-lg"
             >
-              <span>Get Started</span>
+              <span>Book a Demo</span>
               <span className="flex items-center justify-center p-2 bg-zinc-950 text-white rounded-full transition-transform duration-300 group-hover:rotate-45">
                 <ArrowUpRight className="w-6 h-6" strokeWidth={2.5} />
               </span>
