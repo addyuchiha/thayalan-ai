@@ -73,7 +73,7 @@ function HeroSection() {
       `}</style>
 
       {/* Hero Graphic Container */}
-      <div className="absolute inset-0 z-0 rounded-[3rem] overflow-hidden">
+      <div className="absolute inset-0 z-0 rounded-[3rem] overflow-hidden select-none pointer-events-none">
         {/* Background Image */}
         <Image
           src="/images/HeroBackground.png"
@@ -81,6 +81,7 @@ function HeroSection() {
           fill
           className="object-cover object-center anim-bg"
           priority
+          draggable={false}
         />
 
         {/* Particle Overlay (wrapped to apply animation class safely) */}
@@ -93,12 +94,8 @@ function HeroSection() {
           src={HeroImage}
           alt="Cyborg"
           className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-auto h-[60%] md:h-[80%] object-contain object-bottom anim-cyborg"
+          draggable={false}
         />
-
-        {/* Optional: The Glassmorphism Ecosystem Cards */}
-        {/* <div className="anim-content">
-          <ToolsOverlay />
-        </div> */}
       </div>
 
       {/* Hero Content Section - Centered on mobile, absolute bottom on desktop */}

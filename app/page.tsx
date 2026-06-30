@@ -10,7 +10,7 @@ import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div className="bg-black">
+    <div className="bg-black selection:bg-blue-600 selection:text-black">
       <Navbar />
       <HeroSection />
       <div className="px-0 sm:px-10 md:px-16">
