@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRightFromSquare } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 
 function Footer() {
@@ -17,7 +18,7 @@ function Footer() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [bottomInView, setBottomInView] = useState(false);
 
-  // 1. Text scroll-progress handler
+  // 1. Text scroll-progress handler (increased from 500px to 900px for a longer, smoother fade)
   useEffect(() => {
     const handleScroll = () => {
       if (!textRef.current) return;
@@ -25,9 +26,9 @@ function Footer() {
       const windowHeight = window.innerHeight;
 
       // The transition starts immediately as the text enters the bottom of the viewport
-      // and completes gradually across 500px of upward scroll
+      // and completes gradually across a deep 900px scroll window
       const start = windowHeight;
-      const end = windowHeight - 500;
+      const end = windowHeight - 900;
 
       let progress = (start - rect.top) / (start - end);
       progress = Math.max(0, Math.min(1, progress));
@@ -49,7 +50,7 @@ function Footer() {
           midObserver.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     const bottomObserver = new IntersectionObserver(
@@ -59,7 +60,7 @@ function Footer() {
           bottomObserver.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (midRef.current) midObserver.observe(midRef.current);
@@ -71,8 +72,11 @@ function Footer() {
     };
   }, []);
 
-  // Heading text split into words
-  const words = "Interested in working together, trying our platform or simply learning more?".split(" ");
+  // Heading text split into words (Updated "trying our platform" to match his core offering)
+  const words =
+    "Interested in working together, automating your workflows, or simply learning more?".split(
+      " ",
+    );
 
   return (
     <div className="relative">
@@ -97,30 +101,34 @@ function Footer() {
       `}</style>
 
       {/* Ambient Blue glow positioned at top */}
-      <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0" 
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0"
         aria-hidden="true"
       />
       <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 mb-4 sm:mb-16 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
- 
-
         <div className="relative z-10">
           {/* Top Section - Always Visible & Bound to Scroll Reveal */}
           <div className="max-w-4xl">
             <div className="flex items-center gap-2 text-[#9BA8FF] text-sm font-medium mb-6">
               <span className="text-base leading-none">✦</span> Contact Us
             </div>
-            
-            <h2 
-              ref={textRef} 
+
+            <h2
+              ref={textRef}
               className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.15] select-none"
             >
               {words.map((word, idx) => {
                 // Determine step and activation window for word-by-word fade
-                const overlap = 0.15; 
+                const overlap = 0.15;
                 const wordStart = (idx / words.length) * (1 - overlap);
                 const wordEnd = wordStart + overlap;
-                const wordProgress = Math.max(0, Math.min(1, (scrollProgress - wordStart) / (wordEnd - wordStart)));
+                const wordProgress = Math.max(
+                  0,
+                  Math.min(
+                    1,
+                    (scrollProgress - wordStart) / (wordEnd - wordStart),
+                  ),
+                );
 
                 // Interpolating from zinc-500 (113, 113, 122) to White (255, 255, 255)
                 const r = Math.round(113 + (255 - 113) * wordProgress);
@@ -132,7 +140,7 @@ function Footer() {
                     key={idx}
                     style={{
                       color: `rgb(${r}, ${g}, ${b})`,
-                      transition: "color 0.1s linear"
+                      transition: "color 0.1s linear",
                     }}
                     className="inline-block mr-[0.25em]"
                   >
@@ -144,8 +152,8 @@ function Footer() {
           </div>
 
           {/* Middle Section: Contact & Navigation (Animated Individually via Opacity) */}
-          <div 
-            ref={midRef} 
+          <div
+            ref={midRef}
             className={`relative z-10 ${midInView ? "animate-mid-in" : ""}`}
           >
             <div className="anim-footer-mid mt-20 md:mt-32 flex flex-col md:flex-row items-start md:items-end justify-between gap-12">
@@ -165,24 +173,33 @@ function Footer() {
               </div>
 
               <nav className="flex flex-wrap items-center gap-6 md:gap-10">
-                {/* Links matching Navbar */}
-                {["Features", "Solutions", "Pricing", "About"].map((link) => (
-                  <a
-                    key={link}
-                    href={`#${link.toLowerCase()}`}
-                    className="text-white text-base md:text-lg font-medium hover:text-zinc-400 transition-colors"
-                  >
-                    {link}
-                  </a>
-                ))}
+                {/* Updated Navigation Links to match updated Page Layout */}
+                <a
+                  href="#how-we-work"
+                  className="text-white text-base md:text-lg font-medium hover:text-zinc-400 transition-colors"
+                >
+                  How We Work
+                </a>
+                <a
+                  href="#ecosystem"
+                  className="text-white text-base md:text-lg font-medium hover:text-zinc-400 transition-colors"
+                >
+                  Ecosystem
+                </a>
+                <a
+                  href="#ways-to-engage"
+                  className="text-white text-base md:text-lg font-medium hover:text-zinc-400 transition-colors"
+                >
+                  Ways to Engage
+                </a>
               </nav>
             </div>
           </div>
         </div>
 
         {/* Bottom Section: Huge Logo & Footer Bar (Animated Individually via Opacity) */}
-        <div 
-          ref={bottomRef} 
+        <div
+          ref={bottomRef}
           className={`relative z-10 mt-32 md:mt-40 ${bottomInView ? "animate-bottom-in" : ""}`}
         >
           <div className="anim-footer-bottom">
@@ -206,6 +223,20 @@ function Footer() {
                 © {new Date().getFullYear()} Thayalan.ai. All rights reserved.
               </p>
 
+              {/* Your Designer/Developer Credit */}
+              <p className="text-zinc-500">
+                Designed and Developed by{" "}
+                <a
+                  href="https://valyroe.in/services/web-development"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-0.5 group"
+                >
+                  Valyroe
+                  <ArrowUpRightFromSquare size={12} />
+                </a>
+              </p>
+
               <div className="flex items-center gap-6">
                 <a
                   href="#linkedin"
@@ -219,7 +250,10 @@ function Footer() {
                 >
                   Facebook
                 </a>
-                <a href="#twitter" className="hover:text-white transition-colors">
+                <a
+                  href="#twitter"
+                  className="hover:text-white transition-colors"
+                >
                   Twitter
                 </a>
               </div>

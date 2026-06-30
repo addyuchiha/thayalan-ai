@@ -65,25 +65,25 @@ function Navbar() {
             href="#features" 
             className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
           >
-            Features
+            Testimonials
           </a>
           <a 
             href="#solutions" 
             className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
           >
-            Solutions
+            How We Work
           </a>
           <a 
             href="#pricing" 
             className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
           >
-            Pricing
+            Ecosystem
           </a>
           <a 
             href="#about" 
             className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
           >
-            About
+            Ways to Engage
           </a>
         </div>
 
@@ -127,28 +127,28 @@ function Navbar() {
               onClick={() => setIsOpen(false)}
               className="text-base font-medium text-zinc-400 hover:text-white transition-colors py-2"
             >
-              Features
+              Testimonials
             </a>
             <a 
               href="#solutions" 
               onClick={() => setIsOpen(false)}
               className="text-base font-medium text-zinc-400 hover:text-white transition-colors py-2"
             >
-              Solutions
+              How We Work
             </a>
             <a 
               href="#pricing" 
               onClick={() => setIsOpen(false)}
               className="text-base font-medium text-zinc-400 hover:text-white transition-colors py-2"
             >
-              Pricing
+              Ecosystem
             </a>
             <a 
               href="#about" 
               onClick={() => setIsOpen(false)}
               className="text-base font-medium text-zinc-400 hover:text-white transition-colors py-2"
             >
-              About
+              Ways to Engage
             </a>
           </div>
           <hr className="border-zinc-900" />
