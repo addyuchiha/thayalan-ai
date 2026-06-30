@@ -2,35 +2,63 @@
 
 import React, { useState, useEffect, useRef } from "react";
 
-// Replace the 'image' URLs below with your actual project screenshots
 const projects = [
   {
-    title: "Border",
-    category: "Web Design",
+    title: "Revenue Operations",
+    category: "Sales Optimization",
     year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop",
+    services: ["Pipeline Generation", "Automation", "Sales Optimization"],
+    outcome:
+      "Generated tens of millions in pipeline and supported millions in closed revenue.",
+    logo: "/logos/revenue-operations.svg", // Replace with your logo path
   },
   {
-    title: "Theo",
-    category: "E-Commerce",
+    title: "King Charters",
+    category: "Growth Positioning",
     year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800&auto=format&fit=crop",
+    services: ["Website Refresh", "Rebrand Strategy", "Growth Positioning"],
+    outcome:
+      "Modernized online presence and successfully supported future scaling.",
+    logo: "/images/logos/king-charters.png", // Replace with your logo path
   },
   {
-    title: "SnapShot",
-    category: "Product Design",
-    year: "2023",
-    image:
-      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop",
+    title: "Smile Labs",
+    category: "Workflow Optimization",
+    year: "2024",
+    services: ["Website Redesign", "Workflow Optimization", "Systems Setup"],
+    outcome:
+      "Created a smoother customer experience and stronger operational systems.",
+    logo: "/logos/smile-labs.svg", // Replace with your logo path
   },
   {
-    title: "Glowhaus",
-    category: "Brand Identity",
-    year: "2023",
-    image:
-      "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=800&auto=format&fit=crop",
+    title: "Tamil Golfers Canada",
+    category: "Community Building",
+    year: "2024",
+    services: [
+      "Community Building",
+      "Sponsorship Strategy",
+      "Event Growth",
+      "Marketing",
+    ],
+    outcome:
+      "Created opportunities to experience golf through subsidized community programming.",
+    logo: "/logos/tamil-golfers.svg", // Replace with your logo path
+  },
+  {
+    title: "Secure with Saj",
+    category: "Content Strategy",
+    year: "2024",
+    services: ["Marketing Support", "Content Strategy", "Digital Visibility"],
+    outcome: "Helped improve digital visibility and overall brand positioning.",
+    logo: "/logos/secure-with-saj.svg", // Replace with your logo path
+  },
+  {
+    title: "TS My Realtor",
+    category: "Brand Support",
+    year: "2024",
+    services: ["Marketing", "Content", "Brand Support"],
+    outcome: "Improved overall digital engagement and online presence.",
+    logo: "/logos/ts-my-realtor.svg", // Replace with your logo path
   },
 ];
 
@@ -48,7 +76,7 @@ export default function PortfolioSection() {
       },
       {
         threshold: 0.1, // Trigger transition when 10% is visible
-      }
+      },
     );
 
     if (sectionRef.current) {
@@ -61,7 +89,7 @@ export default function PortfolioSection() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className={`bg-black text-white py-32 relative overflow-hidden ${
         isInView ? "animate-in" : ""
@@ -77,6 +105,11 @@ export default function PortfolioSection() {
         }
         .animate-marquee {
           animation: marquee 35s linear infinite;
+        }
+
+        /* Pauses the marquee loop smoothly on hover for easy card reading */
+        .animate-marquee:hover {
+          animation-play-state: paused !important;
         }
 
         /* --- ENTRY ANIMATIONS (Triggered when .animate-in is active) --- */
@@ -212,38 +245,72 @@ export default function PortfolioSection() {
           </h2>
 
           <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl font-light mb-8">
-            Discover a showcase of diverse{" "}
-            <span className="text-zinc-200 font-normal">
-              subscription-based projects
-            </span>
-            , where each design and development solution is crafted to deliver
-            lasting impact.
+            A proven track record of helping teams optimize operations, scale
+            business development, and deploy high-impact digital workflows.
           </p>
 
-          <button className="bg-white text-black px-6 py-3 text-sm font-semibold rounded-full hover:bg-zinc-200 hover:scale-[1.02] transition-all duration-300">
-            Contact Sales
-          </button>
+          <a
+            href="https://calendly.com/sthayalan/nicejob"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-black px-6 py-3 text-sm font-semibold rounded-full hover:bg-zinc-200 hover:scale-[1.02] transition-all duration-300"
+          >
+            Book a Demo
+          </a>
         </div>
 
         {/* Infinite Marquee Wrapper */}
         <div className="relative w-full flex anim-marquee-rows">
-          {/* 
-            The track container - Width is max-content.
-            Runs continuously without pausing on hover.
-          */}
           <div className="flex w-max animate-marquee">
             {/* First Set of Items */}
             <div className="flex gap-6 pr-6">
               {projects.map((project, index) => (
                 <div key={`set1-${index}`} className="relative">
-                  <div className="w-[300px] md:w-[450px] lg:w-[550px] flex flex-col gap-4 cursor-pointer bg-black rounded-[2rem]">
-                    {/* Rounded Image Container */}
-                    <div className="relative w-full aspect-[4/3] bg-zinc-900 rounded-[2rem] overflow-hidden">
+                  <div className="w-[300px] md:w-[450px] lg:w-[550px] flex flex-col gap-4 cursor-pointer bg-black rounded-[2rem] group/card overflow-hidden">
+                    {/* Centered Logo Container */}
+                    <div className="relative w-full aspect-[4/3] bg-zinc-900 rounded-[2rem] overflow-hidden flex items-center justify-center p-12">
+                      {/* Bottom-right soft glow */}
+                      <div className="absolute bottom-0 right-0 w-2/3 h-2/3 bg-blue-600 rounded-full blur-[80px] translate-x-1/4 translate-y-1/4 z-0 pointer-events-none" />
+
                       <img
-                        src={project.image}
-                        alt={project.title}
-                        className="object-cover w-full h-full hover:scale-105 transition-transform duration-700 ease-out opacity-80 hover:opacity-100"
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        className="max-h-16 max-w-[60%] object-contain transition-transform duration-700 ease-out group-hover/card:scale-105 brightness-0 invert z-10"
                       />
+
+                      {/* Sliding Blue Panel (Diagonal, Rotated, z-10) */}
+                      <div className="absolute inset-0 bg-blue-600 scale-200 rotate-45 transition-transform duration-500 ease-out delay-150 translate-x-[200%] -translate-y-[200%] group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:delay-0 z-10" />
+
+                      {/* Sliding Black Panel (Diagonal, Rotated, Sits on top of blue, z-20) */}
+                      <div className="absolute inset-0 bg-black scale-200 rotate-45 transition-transform duration-500 ease-out delay-0 translate-x-[200%] -translate-y-[200%] group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:delay-150 z-20" />
+
+                      {/* Centered Content: z-30 (Fades in-place, aligned with completion of black panel transition) */}
+                      <div className="absolute inset-0 flex flex-col justify-center items-center p-6 md:p-10 z-30 text-center whitespace-normal opacity-0 group-hover/card:opacity-100 transition-opacity duration-150 delay-0 group-hover/card:duration-250 group-hover/card:delay-[650ms] pointer-events-none">
+                        {/* Services Badges / Tags */}
+                        <div className="flex flex-wrap justify-center gap-2 mb-1">
+                          {project.services.map((service, sIdx) => (
+                            <span
+                              key={sIdx}
+                              className="text-[10px] md:text-xs font-medium bg-white text-zinc-900 px-2.5 py-1 rounded-full border border-zinc-200"
+                            >
+                              {service}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Soft horizontal divider */}
+                        <div className="w-12 h-[1px] bg-zinc-800 my-4" />
+
+                        {/* Outcome Details */}
+                        <div className="max-w-[85%]">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-white mb-2">
+                            Key Outcome
+                          </p>
+                          <p className="text-xs md:text-sm text-zinc-300 leading-relaxed font-light">
+                            {project.outcome}
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Text Bar */}
@@ -260,30 +327,66 @@ export default function PortfolioSection() {
               ))}
             </div>
 
-            {/* Second Set of Items (Exact Duplicate for the loop illusion) */}
+            {/* Second Set of Items (Exact Duplicate for seamless infinite loop) */}
             <div className="flex gap-6 pr-6">
               {projects.map((project, index) => (
-                <div
-                  key={`set2-${index}`}
-                  className="w-[300px] md:w-[450px] lg:w-[550px] flex flex-col gap-4 cursor-pointer"
-                >
-                  {/* Rounded Image Container */}
-                  <div className="relative w-full aspect-[4/3] bg-zinc-900 rounded-[2rem] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-700 ease-out opacity-80 hover:opacity-100"
-                    />
-                  </div>
+                <div key={`set2-${index}`} className="relative">
+                  <div className="w-[300px] md:w-[450px] lg:w-[550px] flex flex-col gap-4 cursor-pointer bg-black rounded-[2rem] group/card overflow-hidden">
+                    {/* Centered Logo Container */}
+                    <div className="relative w-full aspect-[4/3] bg-zinc-900 rounded-[2rem] overflow-hidden flex items-center justify-center p-12">
+                      {/* Bottom-right soft glow (Copied from Set 1) */}
+                      <div className="absolute bottom-0 right-0 w-2/3 h-2/3 bg-blue-600 rounded-full blur-[80px] translate-x-1/4 translate-y-1/4 z-0 pointer-events-none" />
 
-                  {/* Text Bar */}
-                  <div className="flex items-center justify-between px-2 py-2">
-                    <h3 className="text-xl font-semibold text-white">
-                      {project.title}
-                    </h3>
-                    <span className="text-sm font-medium text-zinc-500">
-                      {project.category} &nbsp;•&nbsp; {project.year}
-                    </span>
+                      <img
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        className="max-h-16 max-w-[60%] object-contain transition-transform duration-700 ease-out group-hover/card:scale-105 brightness-0 invert z-10"
+                      />
+
+                      {/* Sliding Blue Panel (Diagonal, Rotated, z-10) */}
+                      <div className="absolute inset-0 bg-blue-600 scale-200 rotate-45 transition-transform duration-500 ease-out delay-150 translate-x-[200%] -translate-y-[200%] group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:delay-0 z-10" />
+
+                      {/* Sliding Black Panel (Diagonal, Rotated, Sits on top of blue, z-20) */}
+                      <div className="absolute inset-0 bg-black scale-200 rotate-45 transition-transform duration-500 ease-out delay-0 translate-x-[200%] -translate-y-[200%] group-hover/card:translate-x-0 group-hover/card:translate-y-0 group-hover/card:delay-150 z-20" />
+
+                      {/* Centered Content: z-30 (Fades in-place, aligned with completion of black panel transition) */}
+                      <div className="absolute inset-0 flex flex-col justify-center items-center p-6 md:p-10 z-30 text-center whitespace-normal opacity-0 group-hover/card:opacity-100 transition-opacity duration-150 delay-0 group-hover/card:duration-250 group-hover/card:delay-[650ms] pointer-events-none">
+                        {/* Services Badges / Tags */}
+                        <div className="flex flex-wrap justify-center gap-2 mb-1">
+                          {project.services.map((service, sIdx) => (
+                            <span
+                              key={sIdx}
+                              className="text-[10px] md:text-xs font-medium bg-white text-zinc-900 px-2.5 py-1 rounded-full border border-zinc-200"
+                            >
+                              {service}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Soft horizontal divider */}
+                        <div className="w-12 h-[1px] bg-zinc-800 my-4" />
+
+                        {/* Outcome Details */}
+                        <div className="max-w-[85%]">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-white mb-2">
+                            Key Outcome
+                          </p>
+                          <p className="text-xs md:text-sm text-zinc-300 leading-relaxed font-light">
+                            {project.outcome}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Text Bar */}
+                    <div className="flex items-center justify-between px-2 py-2">
+                      <h3 className="text-xl font-semibold text-white">
+                        {project.title}
+                      </h3>
+                      <span className="text-sm font-medium text-zinc-500">
+                        {project.category} &nbsp;•&nbsp; {project.year}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
