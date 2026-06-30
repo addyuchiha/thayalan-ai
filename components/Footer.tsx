@@ -4,39 +4,44 @@ import { ArrowUpRightFromSquare } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 
 function Footer() {
-  // Using the Linear icon from your Navbar
   const logoUrl = "https://unpkg.com/simple-icons@v13/icons/linear.svg";
 
-  // State for Scroll Progress on Header Text
   const textRef = useRef<HTMLHeadingElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // States & Refs for independent section entry animations
   const midRef = useRef<HTMLDivElement>(null);
   const [midInView, setMidInView] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const [bottomInView, setBottomInView] = useState(false);
 
-  // 1. Text scroll-progress handler (increased from 500px to 900px for a longer, smoother fade)
+  // 1. Text scroll-progress handler
   useEffect(() => {
     const handleScroll = () => {
       if (!textRef.current) return;
       const rect = textRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // The transition starts immediately as the text enters the bottom of the viewport
-      // and completes gradually across a deep 900px scroll window
-      const start = windowHeight;
-      const end = windowHeight - 900;
+      const scrollY = window.scrollY;
+      const maxScrollY = document.documentElement.scrollHeight - windowHeight;
+      const distanceToBottom = maxScrollY - scrollY;
+
+      const start = windowHeight - 50;
+      const end = windowHeight - 550; 
 
       let progress = (start - rect.top) / (start - end);
       progress = Math.max(0, Math.min(1, progress));
+
+      if (distanceToBottom < 80) {
+        const forceFactor = 1 - (distanceToBottom / 80);
+        progress = progress + (1 - progress) * forceFactor;
+      }
+
       setScrollProgress(progress);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial execution
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -72,7 +77,6 @@ function Footer() {
     };
   }, []);
 
-  // Heading text split into words (Updated "trying our platform" to match his core offering)
   const words =
     "Interested in working together, automating your workflows, or simply learning more?".split(
       " ",
@@ -81,7 +85,6 @@ function Footer() {
   return (
     <div className="relative">
       <style>{`
-        /* Contact/Nav Entrance Animation (Opacity only) */
         .anim-footer-mid {
           opacity: 0;
           transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -90,7 +93,6 @@ function Footer() {
           opacity: 1;
         }
 
-        /* Bottom Logo & Copy Entrance Animation (Opacity only) */
         .anim-footer-bottom {
           opacity: 0;
           transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -100,14 +102,13 @@ function Footer() {
         }
       `}</style>
 
-      {/* Ambient Blue glow positioned at top */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0"
         aria-hidden="true"
       />
+      
       <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 mb-4 sm:mb-16 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
         <div className="relative z-10">
-          {/* Top Section - Always Visible & Bound to Scroll Reveal */}
           <div className="max-w-4xl">
             <div className="flex items-center gap-2 text-[#9BA8FF] text-sm font-medium mb-6">
               <span className="text-base leading-none">✦</span> Contact Us
@@ -118,29 +119,22 @@ function Footer() {
               className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.15] select-none"
             >
               {words.map((word, idx) => {
-                // Determine step and activation window for word-by-word fade
-                const overlap = 0.15;
-                const wordStart = (idx / words.length) * (1 - overlap);
-                const wordEnd = wordStart + overlap;
-                const wordProgress = Math.max(
-                  0,
-                  Math.min(
-                    1,
-                    (scrollProgress - wordStart) / (wordEnd - wordStart),
-                  ),
-                );
-
-                // Interpolating from zinc-500 (113, 113, 122) to White (255, 255, 255)
-                const r = Math.round(113 + (255 - 113) * wordProgress);
-                const g = Math.round(113 + (255 - 113) * wordProgress);
-                const b = Math.round(122 + (255 - 122) * wordProgress);
+                // Distribute thresholds evenly across the active scroll window (from 5% to 95% scroll progress)
+                const startRange = 0.05;
+                const endRange = 0.95;
+                const threshold = startRange + (idx / (words.length - 1 || 1)) * (endRange - startRange);
+                
+                // Binary evaluation: The word is either active (true) or inactive (false) [1]
+                const isRevealed = scrollProgress >= threshold;
 
                 return (
                   <span
                     key={idx}
                     style={{
-                      color: `rgb(${r}, ${g}, ${b})`,
-                      transition: "color 0.1s linear",
+                      // Color is strictly one of two states: solid white or dim translucent white [1]
+                      color: isRevealed ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.25)",
+                      // A snappy CSS transition softens the binary flip so it looks polished [1]
+                      transition: "color 500ms cubic-bezier(0.215, 0.61, 0.355, 1)",
                     }}
                     className="inline-block mr-[0.25em]"
                   >
@@ -151,7 +145,6 @@ function Footer() {
             </h2>
           </div>
 
-          {/* Middle Section: Contact & Navigation (Animated Individually via Opacity) */}
           <div
             ref={midRef}
             className={`relative z-10 ${midInView ? "animate-mid-in" : ""}`}
@@ -173,7 +166,6 @@ function Footer() {
               </div>
 
               <nav className="flex flex-wrap items-center gap-6 md:gap-10">
-                {/* Updated Navigation Links to match updated Page Layout */}
                 <a
                   href="#how-we-work"
                   className="text-white text-base md:text-lg font-medium hover:text-zinc-400 transition-colors"
@@ -197,33 +189,28 @@ function Footer() {
           </div>
         </div>
 
-        {/* Bottom Section: Huge Logo & Footer Bar (Animated Individually via Opacity) */}
         <div
           ref={bottomRef}
           className={`relative z-10 mt-32 md:mt-40 ${bottomInView ? "animate-bottom-in" : ""}`}
         >
           <div className="anim-footer-bottom">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-8 mb-16">
-              {/* Scaled-up Linear Logo (using invert to keep it white like your navbar) */}
               <img
                 src={logoUrl}
                 alt="Linear Logo"
                 className="h-[clamp(4rem,9vw,9rem)] w-auto object-contain invert brightness-0 shrink-0"
               />
 
-              {/* Massive Typography */}
               <h1 className="text-[clamp(3.5rem,10.5vw,11.5rem)] leading-none font-bold tracking-tighter text-white">
                 Thayalan.ai
               </h1>
             </div>
 
-            {/* Very Bottom Info Bar */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-medium text-zinc-500 pt-8 mt-8 border-t border-white/5">
               <p>
                 © {new Date().getFullYear()} Thayalan.ai. All rights reserved.
               </p>
 
-              {/* Your Designer/Developer Credit */}
               <p className="text-zinc-500">
                 Designed and Developed by{" "}
                 <a
