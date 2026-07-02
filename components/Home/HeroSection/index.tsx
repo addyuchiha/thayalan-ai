@@ -112,7 +112,7 @@ function HeroSection() {
           <div className="flex flex-col items-center md:items-end gap-6 justify-center md:justify-end pointer-events-auto">
             
             {/* Medium length description visible only on mobile */}
-            <p className="block md:hidden text-lg text-zinc-200 leading-relaxed max-w-sm text-center drop-shadow-md">
+            <p className="block md:hidden text-lg text-zinc-300 leading-relaxed max-w-sm text-center drop-shadow-md">
               I help businesses grow faster by streamlining operations, generating demand, and deploying practical AI workflows.
             </p>
 
@@ -127,11 +127,11 @@ function HeroSection() {
               href="https://calendly.com/sthayalan/nicejob"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-4 pl-8 pr-2 py-2 bg-white text-zinc-950 font-medium rounded-full hover:bg-zinc-200 transition-colors duration-200 shadow-lg"
+              className="group inline-flex items-center gap-2.5 md:gap-4 pl-5 pr-1.5 py-1.5 md:pl-8 md:pr-2 md:py-2 bg-white text-zinc-950 text-sm md:text-base font-medium rounded-full hover:bg-zinc-200 transition-colors duration-200 shadow-lg"
             >
               <span>Book a Demo</span>
-              <span className="flex items-center justify-center p-2 bg-zinc-950 text-white rounded-full transition-transform duration-300 group-hover:rotate-45">
-                <ArrowUpRight className="w-6 h-6" strokeWidth={2.5} />
+              <span className="flex items-center justify-center p-1.5 md:p-2 bg-zinc-950 text-white rounded-full transition-transform duration-300 group-hover:rotate-45">
+                <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
               </span>
             </a>
           </div>
