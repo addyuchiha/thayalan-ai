@@ -100,7 +100,7 @@ function HeroSection() {
 
       {/* Hero Content Section - Centered on mobile, absolute bottom on desktop */}
       <div className="absolute inset-0 md:inset-auto md:bottom-0 md:left-0 md:w-full md:h-auto z-30 p-6 md:p-12 lg:p-16 flex flex-col justify-center md:block pointer-events-none anim-content">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-end w-full mb-16 md:mb-0">
           {/* Left: Heading (Centered on mobile, left-aligned on desktop) */}
           <div className="md:pr-8 pointer-events-auto text-center md:text-left">
             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-8xl text-white tracking-tight leading-tight">
@@ -110,11 +110,19 @@ function HeroSection() {
 
           {/* Right: Subheading & CTA (Centered on mobile, right-aligned on desktop) */}
           <div className="flex flex-col items-center md:items-end gap-6 justify-center md:justify-end pointer-events-auto">
-            <p className="text-lg md:text-xl text-zinc-100 leading-relaxed max-w-xl text-center md:text-end drop-shadow-md">
+            
+            {/* Medium length description visible only on mobile */}
+            <p className="block md:hidden text-lg text-zinc-200 leading-relaxed max-w-sm text-center drop-shadow-md">
+              I help businesses grow faster by streamlining operations, generating demand, and deploying practical AI workflows.
+            </p>
+
+            {/* Original description visible only on desktop */}
+            <p className="hidden md:block text-lg md:text-xl text-zinc-100 leading-relaxed max-w-xl text-end drop-shadow-md">
               Generating demand, streamlining operations, and deploying
               practical AI workflows. I help businesses grow faster using modern
               go-to-market strategies and automation.
             </p>
+
             <a
               href="https://calendly.com/sthayalan/nicejob"
               target="_blank"
