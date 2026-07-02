@@ -154,7 +154,7 @@ export default function HowWeWorkSection() {
         }
       `}</style>
 
-      <div className="max-w-[100rem] mx-auto px-4 md:px-8 relative z-10">
+      <div className="max-w-[100rem] mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mx-auto mb-20 flex flex-col items-center anim-process-header">
           <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
