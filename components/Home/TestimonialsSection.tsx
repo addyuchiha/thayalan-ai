@@ -254,10 +254,10 @@ export default function TestimonialsSection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-blue-600/15 via-blue-500/10 to-blue-400/5 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         <div className="relative z-10 text-center mx-auto flex flex-col items-center max-w-2xl px-4">
-          <h2 className="text-4xl md:text-6xl tracking-tight mb-6 text-white font-medium">
+          <h2 className="text-3xl md:text-6xl tracking-tight mb-6 text-white font-medium">
             Trusted by businesses worldwide
           </h2>
-          <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+          <p className="text-zinc-400 md:text-lg leading-relaxed mb-8">
             See how we help operators, sales teams, and fast-growing
             organizations eliminate operational friction and implement
             high-yield AI systems.
@@ -333,8 +333,8 @@ export default function TestimonialsSection() {
         </div>
       </div>
 
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+      <div className="hidden md:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+      <div className="hidden md:block absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
     </section>
   );
 }

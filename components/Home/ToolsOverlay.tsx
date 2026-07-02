@@ -98,10 +98,10 @@ export default function Unified3DEcosystem() {
     <section className="w-full max-w-[100rem] mx-auto px-4 md:px-12 lg:px-16 flex flex-col items-center justify-center bg-black relative select-none text-white">
       {/* Header and Subheading - Styled to match 'WhyWorkWithMe' */}
       <div className="text-center mx-auto mb-12 md:mb-16 flex flex-col items-center">
-        <h2 className="text-4xl md:text-6xl tracking-tight mb-6 text-white font-normal">
+        <h2 className="text-3xl md:text-6xl tracking-tight mb-6 text-white font-normal">
           A Unified Growth Stack
         </h2>
-        <p className="text-neutral-400 text-lg leading-relaxed max-w-3xl">
+        <p className="text-neutral-400 md:text-lg leading-relaxed max-w-3xl">
           Connecting the industry-standard tools your business relies on daily, while running active ventures that expand technical and commercial reach under a single, unified framework.
         </p>
       </div>

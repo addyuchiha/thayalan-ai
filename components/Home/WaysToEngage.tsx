@@ -256,11 +256,11 @@ export default function WaysToEngage() {
             <span>Ways to Work Together</span>
           </div>
 
-          <h2 className="text-4xl md:text-6xl tracking-tight mb-6 text-white font-normal">
+          <h2 className="text-3xl md:text-6xl tracking-tight mb-6 text-white font-normal">
             Choose Your Engagement Model
           </h2>
 
-          <p className="text-zinc-400 text-lg leading-relaxed mb-8 max-w-3xl">
+          <p className="text-zinc-400 md:text-lg leading-relaxed mb-8 max-w-3xl">
             Flexible collaboration structures built to match your immediate operational bandwidth, technical scope, and GTM timeline.
           </p>
         </div>

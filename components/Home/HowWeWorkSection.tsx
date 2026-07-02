@@ -157,10 +157,10 @@ export default function HowWeWorkSection() {
       <div className="max-w-[100rem] mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mx-auto mb-20 flex flex-col items-center anim-process-header">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
             A structured, collaborative process
           </h2>
-          <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl font-light">
+          <p className="text-zinc-400 md:text-lg leading-relaxed max-w-2xl font-light">
             No guesswork, no sudden surprises. We audit your systems and launch automated workflows using a transparent process built to deliver clear results at every stage.
           </p>
         </div>

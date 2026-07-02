@@ -167,9 +167,9 @@ export default function PortfolioSection() {
       `}</style>
 
       {/* SMOOTH LEFT FADE MASK */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-black via-black/40 to-transparent z-10 pointer-events-none"></div>
+      <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-black via-black/40 to-transparent z-10 pointer-events-none"></div>
       {/* SMOOTH RIGHT FADE MASK */}
-      <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-black via-black/40 to-transparent z-10 pointer-events-none"></div>
+      <div className="hidden md:block absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-black via-black/40 to-transparent z-10 pointer-events-none"></div>
 
       {/* Left Bezel Stack */}
       <div className="absolute top-24 hidden md:block pointer-events-none select-none z-0 -left-[240px] lg:-left-[200px] xl:-left-[90px]">
@@ -240,11 +240,11 @@ export default function PortfolioSection() {
       <div className="w-full">
         {/* Cohesive Typographic Header */}
         <div className="text-center mx-auto mb-20 flex flex-col items-center px-4 md:px-8 anim-header">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
             Selected projects & work
           </h2>
 
-          <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl font-light mb-8">
+          <p className="text-zinc-400 md:text-lg leading-relaxed max-w-2xl font-light mb-8">
             A proven track record of helping teams optimize operations, scale
             business development, and deploy high-impact digital workflows.
           </p>

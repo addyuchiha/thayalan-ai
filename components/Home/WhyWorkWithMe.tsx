@@ -109,10 +109,10 @@ export default function WhyWorkWithMe() {
       <section className="relative z-10 bg-zinc-900 border border-zinc-900 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-2xl text-white">
         {/* Header and Subheading Inside the Card */}
         <div className="text-center mx-auto flex flex-col items-center anim-why-header">
-          <h2 className="text-4xl md:text-6xl tracking-tight mb-6 text-white font-normal">
+          <h2 className="text-3xl md:text-6xl tracking-tight mb-6 text-white font-normal">
             Why work with me?
           </h2>
-          <p className="text-zinc-400 text-lg leading-relaxed mb-8 max-w-3xl">
+          <p className="text-zinc-400 md:text-lg leading-relaxed mb-8 max-w-3xl">
             Growing a business isn't just about buying software, it's about
             finding bottlenecks, automating workflows, and building practical
             systems that help your team execute faster.{" "}
@@ -120,7 +120,7 @@ export default function WhyWorkWithMe() {
         </div>
 
         {/* 3 Cards in a Row Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 md:mt-16">
           {pillars.map((pillar, index) => (
             <div
               key={index}
