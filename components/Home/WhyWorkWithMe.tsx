@@ -31,8 +31,13 @@ const pillars: ValuePillar[] = [
 
 export default function WhyWorkWithMe() {
   const [isInView, setIsInView] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Monitor element intersection for entry animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,6 +59,48 @@ export default function WhyWorkWithMe() {
       observer.disconnect();
     };
   }, []);
+
+  // Detect mobile width to manage swipe interval execution
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // Standard Tailwind 'sm' breakpoint
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  // Automatic swiping mechanism on mobile viewports
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      if (!scrollRef.current) return;
+      const nextPage = (currentPage + 1) % pillars.length;
+      const totalWidth = scrollRef.current.scrollWidth;
+      const targetScrollLeft = (nextPage / pillars.length) * totalWidth;
+
+      scrollRef.current.scrollTo({
+        left: targetScrollLeft,
+        behavior: "smooth",
+      });
+    }, 4000); // Rotates every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isMobile, currentPage]);
+
+  // Synchronize manual and auto swipes with dot indicator active states
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth } = scrollRef.current;
+    if (scrollWidth === 0) return;
+    
+    const index = Math.round((scrollLeft / scrollWidth) * pillars.length);
+    const clampedIndex = Math.max(0, Math.min(index, pillars.length - 1));
+    setCurrentPage(clampedIndex);
+  };
 
   return (
     <div
@@ -98,6 +145,15 @@ export default function WhyWorkWithMe() {
           opacity: 1;
           filter: blur(0px);
         }
+
+        /* Hide scrollbars for cross-browser visual consistency */
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
       `}</style>
 
       {/* Blue glow element positioned at the top behind the card */}
@@ -119,12 +175,16 @@ export default function WhyWorkWithMe() {
           </p>
         </div>
 
-        {/* 3 Cards in a Row Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 md:mt-16">
+        {/* 3 Cards Wrapper: Swiper on Mobile, Grid on Desktop */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar sm:overflow-visible sm:snap-none sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 md:mt-16 scroll-smooth"
+        >
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="group relative bg-black border border-black rounded-[2rem] p-6 hover:border-zinc-800 transition-all duration-300 flex flex-col justify-between overflow-hidden anim-why-card"
+              className="group relative bg-black border border-black rounded-[2rem] p-6 hover:border-zinc-800 transition-all duration-300 flex flex-col justify-between overflow-hidden anim-why-card w-full shrink-0 snap-center sm:w-auto"
             >
               {/* Ambient Blue Glow at bottom left */}
               <div
@@ -163,6 +223,18 @@ export default function WhyWorkWithMe() {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Dynamic Dot Indicators (Visible only on mobile devices) */}
+        <div className="flex justify-center gap-2 mt-8 sm:hidden">
+          {pillars.map((_, index) => (
+            <span
+              key={index}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                currentPage === index ? "bg-white w-6" : "bg-zinc-600 w-2"
+              }`}
+            />
           ))}
         </div>
       </section>

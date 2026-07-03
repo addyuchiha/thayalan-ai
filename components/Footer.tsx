@@ -116,7 +116,7 @@ function Footer() {
 
             <h2
               ref={textRef}
-              className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.15] select-none"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.15] select-none"
             >
               {words.map((word, idx) => {
                 // Distribute thresholds evenly across the active scroll window (from 5% to 95% scroll progress)
@@ -189,19 +189,21 @@ function Footer() {
           </div>
         </div>
 
+        {/* mt-16 on mobile significantly reduces the top vertical spacing gap */}
         <div
           ref={bottomRef}
-          className={`relative z-10 mt-32 md:mt-40 ${bottomInView ? "animate-bottom-in" : ""}`}
+          className={`relative z-10 mt-16 md:mt-40 ${bottomInView ? "animate-bottom-in" : ""}`}
         >
           <div className="anim-footer-bottom">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-8 mb-16">
+            {/* flex-row and items-center keeps icon/text aligned; mb-8 tightens vertical gap */}
+            <div className="flex flex-row items-center gap-3 md:gap-6 lg:gap-8 mb-8 md:mb-16">
               <img
                 src={logoUrl}
                 alt="Linear Logo"
-                className="h-[clamp(4rem,9vw,9rem)] w-auto object-contain invert brightness-0 shrink-0"
+                className="h-8 sm:h-10 md:h-[clamp(4rem,9vw,9rem)] w-auto object-contain invert brightness-0 shrink-0"
               />
 
-              <h1 className="text-[clamp(3.5rem,10.5vw,11.5rem)] leading-none font-bold tracking-tighter text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-[clamp(3.5rem,10.5vw,11.5rem)] leading-none font-bold tracking-tighter text-white">
                 Thayalan.ai
               </h1>
             </div>
@@ -219,7 +221,7 @@ function Footer() {
                   rel="noopener noreferrer"
                   className="text-zinc-300 hover:text-white transition-colors inline-flex items-center gap-0.5 group"
                 >
-                  Valyroe
+                  Valyroe™
                   <ArrowUpRightFromSquare size={12} />
                 </a>
               </p>

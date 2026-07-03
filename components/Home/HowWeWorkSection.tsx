@@ -63,7 +63,11 @@ const steps: ProcessStep[] = [
 
 export default function HowWeWorkSection() {
   const [isInView, setIsInView] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -86,6 +90,48 @@ export default function HowWeWorkSection() {
       observer.disconnect();
     };
   }, []);
+
+  // Detect viewport size to determine whether swipe mechanisms should activate
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Matches the original 'md' breakpoint
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  // Handle automatic mobile swiping rotation
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      if (!scrollRef.current) return;
+      const nextPage = (currentPage + 1) % steps.length;
+      const totalWidth = scrollRef.current.scrollWidth;
+      const targetScrollLeft = (nextPage / steps.length) * totalWidth;
+
+      scrollRef.current.scrollTo({
+        left: targetScrollLeft,
+        behavior: "smooth",
+      });
+    }, 4000); // 4 seconds delay
+
+    return () => clearInterval(interval);
+  }, [isMobile, currentPage]);
+
+  // Synchronize manual scrolling with state active indices
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth } = scrollRef.current;
+    if (scrollWidth === 0) return;
+
+    const index = Math.round((scrollLeft / scrollWidth) * steps.length);
+    const clampedIndex = Math.max(0, Math.min(index, steps.length - 1));
+    setCurrentPage(clampedIndex);
+  };
 
   return (
     <section 
@@ -152,9 +198,18 @@ export default function HowWeWorkSection() {
           opacity: 1;
           filter: blur(0px);
         }
+
+        /* Hide scrollbars for cross-browser swipe consistency */
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
       `}</style>
 
-      <div className="max-w-[100rem] mx-auto relative z-10">
+      <div className="max-w-[100rem] mx-auto relative z-10 px-4 md:px-0">
         {/* Section Header */}
         <div className="text-center mx-auto mb-20 flex flex-col items-center anim-process-header">
           <h2 className="text-3xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
@@ -165,10 +220,17 @@ export default function HowWeWorkSection() {
           </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Steps Grid / Scroll Container */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar md:overflow-visible md:snap-none md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 scroll-smooth"
+        >
           {steps.map((step, index) => (
-            <div className="relative anim-process-card" key={index}>
+            <div 
+              className="relative anim-process-card w-full shrink-0 snap-center md:w-auto" 
+              key={index}
+            >
               <div
                 className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0"
                 aria-hidden="true"
@@ -350,6 +412,18 @@ export default function HowWeWorkSection() {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Dynamic Dot Indicators (Visible only on mobile devices below md) */}
+        <div className="flex justify-center gap-2 mt-8 md:hidden">
+          {steps.map((_, index) => (
+            <span
+              key={index}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                currentPage === index ? "bg-white w-6" : "bg-zinc-600 w-2"
+              }`}
+            />
           ))}
         </div>
       </div>
