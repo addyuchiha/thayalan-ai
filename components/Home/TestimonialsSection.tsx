@@ -103,7 +103,7 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className={`bg-black text-white py-32 overflow-hidden relative w-full ${
+      className={`bg-black text-white py-16 md:py-32 overflow-hidden relative w-full ${
         isInView ? "animate-in" : ""
       }`}
     >

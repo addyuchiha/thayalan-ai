@@ -136,7 +136,7 @@ export default function HowWeWorkSection() {
   return (
     <section 
       ref={sectionRef}
-      className={`bg-black text-white py-32 relative ${isInView ? "animate-in" : ""}`}
+      className={`bg-black text-white py-16 md:py-32 relative ${isInView ? "animate-in" : ""}`}
     >
       {/* Self-contained CSS for layout transitions and particles */}
       <style>{`

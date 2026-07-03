@@ -91,7 +91,7 @@ export default function PortfolioSection() {
   return (
     <section
       ref={sectionRef}
-      className={`bg-black text-white py-32 relative overflow-hidden ${
+      className={`bg-black text-white py-16 md:py-32 relative overflow-hidden ${
         isInView ? "animate-in" : ""
       }`}
     >
