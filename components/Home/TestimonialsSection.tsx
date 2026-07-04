@@ -33,7 +33,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "An absolute game-changer for our SaaS startup. We migrated our entire application stack over to Next.js and Vercel with their guidance, resulting in a 40% drop in page load times. The TypeScript architecture they set up is incredibly clean and scalable.",
+      "An absolute game-changer for our SaaS startup. We migrated our entire application stack over to Next.js and Vercel with their guidance.",
     author: "David Chen",
     role: "Founder & CEO",
     company: "Synthetix",
@@ -265,11 +265,11 @@ export default function TestimonialsSection() {
 
           <a
             href="#ways-to-engage"
-            className="group inline-flex items-center gap-4 pl-8 pr-2 py-2 bg-white text-zinc-950 font-medium rounded-full hover:bg-zinc-200 transition-colors duration-200"
+            className="group inline-flex items-center gap-2.5 md:gap-4 pl-5 pr-1.5 py-1.5 md:pl-8 md:pr-2 md:py-2 bg-white text-zinc-950 text-sm md:text-base font-medium rounded-full hover:bg-zinc-200 transition-colors duration-200 shadow-lg"
           >
             <span>Explore Ways to Partner</span>
-            <span className="flex items-center justify-center p-2 bg-zinc-950 text-white rounded-full transition-transform duration-300 group-hover:rotate-45">
-              <ArrowUpRight className="w-6 h-6" strokeWidth={2.5} />
+            <span className="flex items-center justify-center p-1.5 md:p-2 bg-zinc-950 text-white rounded-full transition-transform duration-300 group-hover:rotate-45">
+              <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
             </span>
           </a>
         </div>
@@ -284,7 +284,7 @@ export default function TestimonialsSection() {
             {[...row1, ...row1].map((item, idx) => (
               <div
                 key={`row1-${idx}`}
-                className="w-[380px] sm:w-[440px] shrink-0 px-1"
+                className="w-[300px] sm:w-[440px] shrink-0 px-1"
               >
                 <TestimonialCard testimonial={item} />
               </div>
@@ -295,7 +295,7 @@ export default function TestimonialsSection() {
             {[...row1, ...row1].map((item, idx) => (
               <div
                 key={`row1-dup-${idx}`}
-                className="w-[380px] sm:w-[440px] shrink-0 px-1"
+                className="w-[300px] sm:w-[440px] shrink-0 px-1"
               >
                 <TestimonialCard testimonial={item} />
               </div>
@@ -313,7 +313,7 @@ export default function TestimonialsSection() {
             {[...row2, ...row2].map((item, idx) => (
               <div
                 key={`row2-${idx}`}
-                className="w-[380px] sm:w-[440px] shrink-0 px-1"
+                className="w-[300px] sm:w-[440px] shrink-0 px-1"
               >
                 <TestimonialCard testimonial={item} />
               </div>
@@ -324,7 +324,7 @@ export default function TestimonialsSection() {
             {[...row2, ...row2].map((item, idx) => (
               <div
                 key={`row2-dup-${idx}`}
-                className="w-[380px] sm:w-[440px] shrink-0 px-1"
+                className="w-[300px] sm:w-[440px] shrink-0 px-1"
               >
                 <TestimonialCard testimonial={item} />
               </div>
@@ -341,23 +341,23 @@ export default function TestimonialsSection() {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="group relative h-full bg-zinc-900/90 backdrop-blur-md border border-zinc-800/90 rounded-[2rem] p-6 md:p-8 hover:border-blue-500/30 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.15)] transition-all duration-300 flex flex-col justify-between whitespace-normal">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/40 transition-all duration-500 rounded-t-[2rem]" />
-      <p className="text-zinc-300 text-base md:text-[15px] leading-relaxed mb-6 font-normal">
+    <div className="group relative h-full bg-zinc-900/90 backdrop-blur-md border border-zinc-800/90 rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 hover:border-blue-500/30 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.15)] transition-all duration-300 flex flex-col justify-between whitespace-normal">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/40 transition-all duration-500 rounded-t-[1.5rem] md:rounded-t-[2rem]" />
+      <p className="text-zinc-300 text-sm md:text-[15px] leading-relaxed mb-4 md:mb-6 font-normal">
         “{testimonial.quote}”
       </p>
 
-      <div className="flex items-center gap-3 pt-4 border-t border-zinc-800/80">
+      <div className="flex items-center gap-3 pt-3 md:pt-4 border-t border-zinc-800/80">
         <img
           src={testimonial.avatar}
           alt={testimonial.author}
-          className="w-10 h-10 rounded-full object-cover filter transition-all duration-300 border border-zinc-800"
+          className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover filter transition-all duration-300 border border-zinc-800"
         />
         <div>
-          <h4 className="text-white text-sm font-semibold">
+          <h4 className="text-white text-xs md:text-sm font-semibold">
             {testimonial.author}
           </h4>
-          <p className="text-zinc-500 text-xs">
+          <p className="text-zinc-500 text-[11px] md:text-xs">
             {testimonial.role} at{" "}
             <span className="text-zinc-400 font-medium">
               {testimonial.company}
