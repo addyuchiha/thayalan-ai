@@ -211,7 +211,7 @@ export default function HowWeWorkSection() {
 
       <div className="max-w-[100rem] mx-auto relative z-10 px-4 md:px-0">
         {/* Section Header */}
-        <div className="text-center mx-auto mb-20 flex flex-col items-center anim-process-header">
+        <div className="text-center mx-auto mb-10 md:mb-20 flex flex-col items-center anim-process-header">
           <h2 className="text-3xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-white font-medium max-w-4xl">
             A structured, collaborative process
           </h2>
@@ -232,7 +232,7 @@ export default function HowWeWorkSection() {
               key={index}
             >
               <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0"
+                className="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500 blur-3xl rounded-full pointer-events-none z-0"
                 aria-hidden="true"
               />
               <div className="relative h-full bg-black rounded-[2rem] p-5 flex flex-col overflow-hidden">

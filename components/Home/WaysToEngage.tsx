@@ -234,7 +234,7 @@ export default function WaysToEngage() {
   const renderCard = (model: EngagementModel) => (
     <div key={model.title} className="relative group flex flex-col isolate anim-engage-card w-full shrink-0 snap-center md:w-auto">
       {/* Particle emitter container */}
-      <div className="absolute top-0 left-6 right-6 h-0 pointer-events-none z-[5] overflow-visible">
+      <div className="absolute top-0 left-6 right-6 h-0 pointer-events-none z-[5] overflow-visible hidden md:block">
         {particles.map((p, pIdx) => (
           <span
             key={pIdx}
@@ -253,7 +253,7 @@ export default function WaysToEngage() {
 
       {/* Background blur decoration */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500/80 blur-3xl rounded-full pointer-events-none z-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[75%] h-48 bg-blue-500/80 blur-3xl rounded-full pointer-events-none z-0 hidden md:block"
         aria-hidden="true"
       />
 
@@ -391,9 +391,9 @@ export default function WaysToEngage() {
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         {/* Header and Subheading */}
-        <div className="text-center mx-auto mb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center anim-engage-header">
+        <div className="text-center mx-auto md:mb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center anim-engage-header">
           <div className="group inline-flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full bg-white text-black border border-neutral-200 shadow-sm hover:bg-neutral-50 text-xs font-bold tracking-wider uppercase mb-6 transition-all duration-300 hover:scale-105 cursor-pointer select-none">
             <TbTopologyComplex className="w-5 h-5 text-black group-hover:rotate-12 transition-transform duration-300" />
             <span>Ways to Work Together</span>
