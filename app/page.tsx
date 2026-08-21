@@ -17,7 +17,7 @@ export default function Home() {
         <TestimonialsSection />
         <WhyWorkWithMe />
         <HowWeWorkSection />
-        <EcosystemMap />
+        {/* <EcosystemMap /> */}
         <PortfolioSection />
         <WaysToEngage />
         <Footer />

@@ -110,7 +110,7 @@ function Footer() {
       <footer className="relative bg-zinc-900 text-zinc-200 overflow-hidden rounded-[2.5rem] mx-4 mb-4 sm:mb-16 p-10 md:p-16 lg:p-20 flex flex-col justify-between min-h-[700px] border border-white/5">
         <div className="relative z-10">
           <div className="max-w-4xl">
-            <div className="flex items-center gap-2 text-[#9BA8FF] text-sm font-medium mb-6">
+            <div className="flex items-center gap-2 text-blue-300 text-sm font-medium mb-6">
               <span className="text-base leading-none">✦</span> Contact Us
             </div>
 
